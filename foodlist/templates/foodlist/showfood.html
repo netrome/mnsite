@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Nom nom nomn
+{% endblock %}
+
+
+{% block content %}
+    {% if dish %}
+        <div class="w3-container w3-sand full-height">
+            <h2>Din nästa måltid:</h2>
+            <div id="dish">
+                <h3 id="dish_name">{{ dish.name }}</h3>
+                <p id="dish_info">{{ dish.description }}</p>
+            </div>
+            <div id="change" class="w3-btn-block w3-pale-yellow">
+                <h3>Jag vill äta något annat</h3>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if dishes %}
+        <div id="dishes" class="w3-container w3-rest w3-deep-purple full-height">
+            <h2>Alla maträtter</h2>
+            <div class="w3-row-padding">
+                {% for d in dishes %}
+                    <div class="w3-third">
+                        <div class="w3-card-4 w3-container w3-yellow">
+                            <h3>{{ d.name }}</h3>
+                            <p> {{ d.description }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <br>
+        </div>
+    {% endif %}
+
+    {% if dish_form %}
+        <div class="w3-container w3-blue full-height">
+        <header class="w3-container w3-blue"><h2>Lägg till maträtt</h2></header>
+        <div class="w3-container">
+            <form method="post" action="" class="w3-container">
+                {% csrf_token %}
+                {{ dish_form }}
+                <input type="submit" class="w3-btn-block w3-blue" value="Lägg till maträtt">
+                <br>
+            </form>
+        </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+
+{% block script %}
+    <script src="{% static 'foodlist/script.js' %}"></script>
+{% endblock %}

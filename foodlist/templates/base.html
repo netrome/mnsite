@@ -1,0 +1,33 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="{% static 'foodlist/style.css' %}">
+</head>
+<body>
+
+<header class="w3-container w3-deep-purple">
+<h1> Matlistan </h1>
+</header>
+
+{% block content %}
+
+
+{% endblock %}
+
+<footer class="w3-container w3-deep-purple center">
+<p> Copyright &copy; Mårten Nilsson </p>
+</footer>
+</body>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="{% static 'foodlist/jquery-2.2.4.js' %}"></script>
+{% block script %}
+{% endblock %}
+</html>
