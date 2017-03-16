@@ -26,7 +26,7 @@
             <div class="w3-row-padding">
                 {% for d in dishes %}
                     <div class="w3-third">
-                        <div class="w3-card-4 w3-container w3-yellow">
+                        <div class="w3-card-4 w3-container w3-yellow dish-container">
                             <h3>{{ d.name }}</h3>
                             <p> {{ d.description }}</p>
                         </div>
@@ -40,11 +40,14 @@
     {% if dish_form %}
         <div class="w3-container w3-blue full-height">
         <header class="w3-container w3-blue"><h2>Lägg till maträtt</h2></header>
-        <div class="w3-container">
+        <div id="outer_form_holder" class="w3-container">
             <form method="post" action="" class="w3-container">
                 {% csrf_token %}
-                {{ dish_form }}
-                <input type="submit" class="w3-btn-block w3-blue" value="Lägg till maträtt">
+                <div id="form_holder">
+                    {{ dish_form }}
+                </div>
+                <br>
+                <input type="submit" class="w3-btn-block w3-deep-purple w3-input" value="Lägg till maträtt">
                 <br>
             </form>
         </div>

@@ -25,7 +25,15 @@ def main_view(request):
 
     if request.method == "POST":
         f = DishForm(request.POST)
-        if f.is_valid():
+        save = True
+        dish = Dish.objects.filter(name=request.POST["name"])
+        if len(dish) > 0:
+            f = DishForm(request.POST, instance=dish[0])
+            if "delete" in request.POST["description"]:
+                dish.delete()
+                save = False
+
+        if f.is_valid() and save:
             f.clean()
             if is_safe(f):
                 f.save()
@@ -49,3 +57,15 @@ def ajax(request):
     answer = '<h3 id="dish-name">{0}</h3><p id="dish_info">{1}</p>'.format(dish.name, dish.description)
 
     return HttpResponse(answer)
+
+@csrf_exempt
+def ajax_update_form(request):
+
+    name = request.POST["name"]
+    dish = Dish.objects.filter(name=name)[0]
+    form = DishForm(instance=dish)
+
+    context = {"dish_form": form}
+    return render(request, "foodlist/dish_form.html", context)
+
+

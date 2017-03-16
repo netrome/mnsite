@@ -25,7 +25,10 @@ SECRET_KEY = '=n8a1&pnbvqydlrsj47&30)=o!7&l(i@8%*^hfiid6m_c5$-gm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "martennilsson.se",
+    "www.martennilsson.se",
+]
 
 
 # Application definition

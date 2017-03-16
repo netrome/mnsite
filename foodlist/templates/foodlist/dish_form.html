@@ -1,0 +1,11 @@
+{% if dish_form %}
+    <form method="post" action="" class="w3-container">
+        {% csrf_token %}
+        <div id="form_holder">
+            {{ dish_form }}
+        </div>
+        <br>
+        <input type="submit" class="w3-btn-block w3-deep-purple w3-input" value="Lägg till maträtt">
+        <br>
+    </form>
+{% endif %}
