@@ -34,6 +34,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'lists.apps.ListsConfig',
     'foodlist.apps.FoodlistConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -54,6 +55,9 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'mnsite.urls'
+
+LOGIN_REDIRECT_URL = 'lists:main'
+LOGOUT_REDIRECT_URL = 'login'
 
 TEMPLATES = [
     {
