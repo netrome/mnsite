@@ -58,6 +58,7 @@ def ajax(request):
 
     return HttpResponse(answer)
 
+
 @csrf_exempt
 def ajax_update_form(request):
 
