@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block content %}
-    <p>Placeholder</p>
+    <div id="app" class="w3-row">
+        <div class="w3-row w3-light-gray">
+            {% for list in lists %}
+                <mn-list name="{{ list }}"></mn-list>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'lists/vuelists.js' %}"></script>
 {% endblock %}

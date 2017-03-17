@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 def lists_main(request):
     template = "lists/main.html"
     context = {
-        "user": request.user
+        "user": request.user,
+        "lists": ["Grocery list", "Important list", "Other list"],
     }
     return render(request, template, context)
