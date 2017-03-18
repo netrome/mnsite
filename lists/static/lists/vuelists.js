@@ -6,7 +6,9 @@ var comp = Vue.component('mn-list', {
     template: `
 <div class="w3-third w3-panel w3-light-gray">
 <ul class="w3-ul w3-card-4 w3-panel w3-white">
-<li><h3 class="w3-center">{{ name }}</h3></li>
+<li>
+<i class="w3-btn w3-right w3-white fa-save" v-on:click="save_items()"></i>
+<h3 class="w3-center">{{ name }}</h3></li>
 <li v-for="(value, key) in mn_items" :key="key">
 <i class="w3-btn w3-right w3-white fa-close" v-on:click="remove_from_list(key)"></i>
 <p v-on:click="toggle_item(key)"><del v-if="!value">{{ key }}</del><span v-else="">{{ key }}</span></p>
@@ -45,7 +47,12 @@ var comp = Vue.component('mn-list', {
         toggle_item: function (item) {
             Vue.set(this.mn_items, item, !this.mn_items[item])
         },
-        
+
+        save_items: function () {
+            // Send ajax data to server
+            $.post("/list/save/" + this.pk, this.mn_items);
+            alert("Saving");
+        }
     },
 
     mounted: function () {
