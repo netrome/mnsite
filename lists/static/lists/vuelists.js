@@ -8,6 +8,7 @@ var comp = Vue.component('mn-list', {
 <ul class="w3-ul w3-card-4 w3-panel w3-white">
 <li>
 <i class="w3-btn w3-right w3-white fa-save" v-on:click="save_items()"></i>
+<i class="w3-btn w3-right w3-white fa-remove" v-on:click="remove_list()"></i>
 <h3 class="w3-center">{{ name }}</h3></li>
 <li v-for="(value, key) in mn_items" :key="key">
 <i class="w3-btn w3-right w3-white fa-close" v-on:click="remove_from_list(key)"></i>
@@ -50,8 +51,18 @@ var comp = Vue.component('mn-list', {
 
         save_items: function () {
             // Send ajax data to server
-            $.post("/list/save/" + this.pk, this.mn_items);
-            alert("Saving");
+            var data = $.extend({mn_name: this.name} ,this.mn_items);
+
+            $.post("/list/save/" + this.pk, data);
+            if (this.pk == "0"){
+                location.reload();
+            }
+        },
+
+        remove_list: function () {
+            // Send remove request
+            $.post("/list/remove/" + this.pk, {});
+            location.reload();
         }
     },
 
@@ -73,12 +84,20 @@ var comp = Vue.component('mn-list', {
 
     props: {
         name: String,
-        pk: Number,
+        pk: String,
     }
 });
 
 var app = new Vue({
     el: "#app",
+    data: {
+        new_list_name: "",
+    },
+    methods: {
+        new_list: function () {
+            alert("Ny lista");
+        }
+    }
 });
 
 /*

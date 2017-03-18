@@ -10,6 +10,8 @@
             {% for list in lists %}
                 <mn-list name="{{ list.name }}" pk="{{ list.id }}"></mn-list>
             {% endfor %}
+        <mn-list v-if="new_list_name" v-bind:name="new_list_name" pk="0"></mn-list>
+        <input class="w3-input" type="text" placeholder="Create new list" v-model="new_list_name">
         </div>
     </div>
 {% endblock %}

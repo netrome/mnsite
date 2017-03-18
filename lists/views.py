@@ -31,12 +31,29 @@ def get_items(request, list_id):
 @csrf_exempt
 def save_items(request, list_id):
     if request.method == "POST":
-        mn_list = get_object_or_404(MnList, id=list_id)
+        if list_id == "0":
+            name = request.POST["mn_name"]
+            mn_list = MnList(name=name, user=request.user)
+            mn_list.save()
+        else:
+            mn_list = get_object_or_404(MnList, id=list_id)
+
         items = MnItem.objects.filter(list=mn_list)
         items.delete()
 
         for key in request.POST:
+            if key == "mn_name":
+                continue
             item = MnItem(list=mn_list, name=key, active=(request.POST[key] == 'true'))
             item.save()
 
     return HttpResponse("success")
+
+
+@csrf_exempt
+def remove_list(request, list_id):
+    mn_list = get_object_or_404(MnList, id=list_id)
+    mn_list.delete()
+    return HttpResponse("success")
+
+
