@@ -3,14 +3,19 @@
 
 {% block content %}
     <div id="app" class="w3-row">
+    <div class="w3-panel">
+        <h2>Dina listor</h2>
+    </div>
         <div class="w3-row w3-light-gray">
             {% for list in lists %}
-                <mn-list name="{{ list }}"></mn-list>
+                <mn-list name="{{ list.name }}" pk="{{ list.id }}"></mn-list>
             {% endfor %}
         </div>
     </div>
 {% endblock %}
 
+
 {% block script %}
+    <script src="{% static 'lists/ajax_functions.js' %}"></script>
     <script src="{% static 'lists/vuelists.js' %}"></script>
 {% endblock %}

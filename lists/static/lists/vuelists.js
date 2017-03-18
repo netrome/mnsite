@@ -2,7 +2,7 @@
  * Created by marten on 2017-03-17.
  */
 
-Vue.component('mn-list', {
+var comp = Vue.component('mn-list', {
     template: `
 <div class="w3-third w3-panel w3-light-gray">
 <ul class="w3-ul w3-card-4 w3-panel w3-white">
@@ -18,7 +18,7 @@ Vue.component('mn-list', {
 `,
     data: function () {
         return {
-            mn_items: {Bananas: true, Eggs: false, Spam: true},
+            mn_items: {}, //{Bananas: true, Eggs: false, Spam: true},
             list_input: ""
         }
     },
@@ -32,9 +32,9 @@ Vue.component('mn-list', {
         remove_from_list: function (value) {
             // Ugly code now
             var new_stuff = {};
-            for (key in this.mn_items){
-                if (key != value){
-                    new_stuff[key] = this.mn_items[key];
+            for (val in this.mn_items){
+                if (val != value){
+                    new_stuff[val] = this.mn_items[val];
                 }
             }
 
@@ -45,13 +45,48 @@ Vue.component('mn-list', {
         toggle_item: function (item) {
             Vue.set(this.mn_items, item, !this.mn_items[item])
         },
+        
+    },
+
+    mounted: function () {
+        var self = this;
+
+        $.get("/list/items/" + this.pk, function (data, status) {
+            var the_items = {};
+            data = JSON.parse(data);
+            for (var index in data){
+                var the_item = data[index].fields;
+                var name = the_item.name;
+                var status = the_item.active;
+                the_items[name] = status;
+            }
+            self.mn_items = the_items;
+        });
     },
 
     props: {
-        name: String
+        name: String,
+        pk: Number,
     }
 });
 
-new Vue({
+var app = new Vue({
     el: "#app",
 });
+
+/*
+function get_list_items(list_pk) {
+    var the_items = {};
+    $.get("/list/items/" + list_pk, function (data, status) {
+        alert("Data: " + data);
+        data = JSON.parse(data);
+        for (var index in data){
+            var the_item = data[index].fields;
+            var name = the_item.name;
+            var status = the_item.active;
+            the_items[name] = status;
+        }
+    });
+    return the_items;
+}
+*/
