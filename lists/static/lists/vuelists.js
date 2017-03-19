@@ -7,11 +7,11 @@ var comp = Vue.component('mn-list', {
 <div class="w3-third w3-panel w3-light-gray">
 <ul class="w3-ul w3-card-4 w3-panel w3-white">
 <li>
-<i class="w3-btn w3-right w3-white fa-save" v-on:click="save_items()"></i>
-<i class="w3-btn w3-right w3-white fa-remove" v-on:click="remove_list()"></i>
+<i class="w3-btn w3-right w3-white fa fa-save" v-on:click="save_items()"></i>
+<i class="w3-btn w3-right w3-white fa fa-remove" v-on:click="remove_list()"></i>
 <h3 class="w3-center">{{ name }}</h3></li>
 <li v-for="(value, key) in mn_items" :key="key">
-<i class="w3-btn w3-right w3-white fa-close" v-on:click="remove_from_list(key)"></i>
+<i class="w3-btn w3-right w3-white fa fa-close" v-on:click="remove_from_list(key)"></i>
 <p v-on:click="toggle_item(key)"><del v-if="!value">{{ key }}</del><span v-else="">{{ key }}</span></p>
 </li>
 <li>{{ list_input }}</li>
