@@ -9,6 +9,15 @@ var comp = Vue.component('mn-list', {
 <li>
 <i class="w3-btn w3-right w3-white fa fa-save" v-on:click="save_items()"></i>
 <i class="w3-btn w3-right w3-white fa fa-remove" v-on:click="remove_list()"></i>
+<div class="w3-dropdown-hover w3-right">
+<button class="w3-btn w3-right w3-white fa fa-user-circle"></button>
+<br>
+<div class="w3-dropdown-content">
+<ul class="w3-ul">
+<li class="w3-btn w3-block w3-white" v-for="friend in friends" v-on:click="share_list(friend)">{{ friend }}</li>
+<ul>
+</div>
+</div>
 <h3 class="w3-center">{{ name }}</h3></li>
 <li v-for="(value, key) in mn_items" :key="key">
 <i class="w3-btn w3-right w3-white fa fa-close" v-on:click="remove_from_list(key)"></i>
@@ -22,7 +31,8 @@ var comp = Vue.component('mn-list', {
     data: function () {
         return {
             mn_items: {}, //{Bananas: true, Eggs: false, Spam: true},
-            list_input: ""
+            list_input: "",
+            friends: []
         }
     },
 
@@ -63,11 +73,20 @@ var comp = Vue.component('mn-list', {
             // Send remove request
             $.post("/list/remove/" + this.pk, {});
             location.reload();
+        },
+
+        share_list: function (friend) {
+            // Send share request
+            $.post("/list/share/" + this.pk, {friend: friend});
         }
     },
 
     mounted: function () {
         var self = this;
+
+        $("#friends").children("p").each( function () {
+            self.friends.push($(this).text());
+            });
 
         $.get("/list/items/" + this.pk, function (data, status) {
             var the_items = {};

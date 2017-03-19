@@ -2,6 +2,12 @@
 {% load staticfiles %}
 
 {% block content %}
+    <div hidden id="friends">
+    {% for friend in friends %}
+        <p>{{ friend.username }}</p>
+    {% endfor %}
+    </div>
+
     <div id="app" class="w3-row">
     <div class="w3-panel">
         <h2>Dina listor</h2>
