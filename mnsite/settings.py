@@ -29,6 +29,7 @@ ALLOWED_HOSTS = [
     "martennilsson.se",
     "www.martennilsson.se",
     "192.168.1.100",
+    "localhost",
 ]
 
 
@@ -37,6 +38,7 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     'lists.apps.ListsConfig',
     'foodlist.apps.FoodlistConfig',
+    'secretsanta.apps.SecretsantaConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
