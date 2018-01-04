@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'lists.apps.ListsConfig',
     'foodlist.apps.FoodlistConfig',
     'secretsanta.apps.SecretsantaConfig',
+    'livesentiment.apps.LivesentimentConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

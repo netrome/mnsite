@@ -1,0 +1,25 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Live sentiment analysis</title>
+</head>
+<body>
+
+<h2>Live sentiment analysis</h2>
+<form action="" method="post" id="textform">
+    {% csrf_token %}
+    {{ form }}
+</form>
+
+<p id="response_text">...</p>
+
+</body>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="{% static 'foodlist/jquery-2.2.4.js' %}"></script>
+<script src="{% static 'livesentiment/script.js' %}">
+</script>
+</html>
