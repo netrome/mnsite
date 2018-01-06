@@ -8,6 +8,17 @@ $(document).ready(function(){
 
     allow_request = true;  // Timeout since our simple server can't handle too many requests
 
+    $("#update").click(function () {
+        if (allow_request) {
+            console.log("Event ---");
+            $("#response_text").load("/livesentiment/get_value/", data);
+            allow_request = false;
+            window.setTimeout(function () {
+                allow_request = true;
+            }, 1000);
+        }
+    });
+
     $("#textform").keyup(function (e) {
         data = $("#textform").serializeArray();
         text = data[1].value;
