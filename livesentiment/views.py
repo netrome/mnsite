@@ -25,7 +25,7 @@ def get_value(request):
 
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.connect(("192.168.1.101", 8095))
+        s.connect(("localhost", 8096))
         s.send(text.encode("utf-8"))
         rec = s.recv(1024).decode("utf-8")
     except Exception:

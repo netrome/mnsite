@@ -4,17 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Live sentiment analysis</title>
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Roboto+Slab" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'livesentiment/style.css' %}">
 </head>
 <body>
 
-<h2>Live sentiment analysis</h2>
+<h1>Live sentiment analysis</h1>
 <form action="" method="post" id="textform">
     {% csrf_token %}
     {{ form }}
 </form>
-<button id="update">Update</button>
+<button id="update">Manual update</button>
 
-<p id="response_text">...</p>
+<p id="stars">★★☆☆☆</p>
+<p id="response_text" hidden>...</p>
 
 </body>
 

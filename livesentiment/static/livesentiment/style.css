@@ -1,0 +1,49 @@
+*{margin: 0; padding: 0;}
+
+h1{
+    margin: 2px 8px;
+    font-family: 'Great Vibes', cursive;
+    font-size: xx-large;
+    font-weight: 100;
+}
+
+body{
+    background-color: #2f343f;
+    color: #f3f4f5;
+    padding: 0;
+    font-family: 'Roboto Slab', serif;
+}
+
+button{
+    width: 100%;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+button:hover{
+    background-color: #00bcd4;
+}
+
+button:active{
+    background-color: white;
+}
+
+textarea{
+    font-family: "DejaVu Sans";
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#stars{
+    color: gold;
+    font-size: xx-large;
+    text-align: center;
+}
